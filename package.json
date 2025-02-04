@@ -1,6 +1,6 @@
 {
   "name": "@yaa.sh/react-progress-flow-stepper",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "type": "module",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
