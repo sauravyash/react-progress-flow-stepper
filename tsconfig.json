@@ -2,42 +2,37 @@
   "compilerOptions": {
     // Targets modern JavaScript features. 
     // Use "ES2020" or "ESNext" depending on your preferences.
-    "target": "ES2020", 
-    
+    "target": "ES2020",
     // The module system used in your emitted code.
     // "ESNext" is preferred for bundlers (Rollup, Webpack, Vite, etc.).
     "module": "ESNext",
-
     // Use React JSX transform. "react-jsx" is for React 17+ with the new JSX transform.
     // If you use an older version of React, you might need "react".
     "jsx": "react-jsx",
-
+    "jsxImportSource": "@emotion/react",
     // Strict mode ensures better type checking.
     "strict": true,
-
     // Generate .d.ts files for type definitions.
     "declaration": true,
-    
     // Output directory for compiled files. Adjust to your needs.
     "outDir": "dist",
-
     // Output directory for .d.ts files (can be the same as outDir). 
     // Adjust if you want to separate your types folder.
     "declarationDir": "dist/types",
-
     // Required for modern Node module resolution.
     "moduleResolution": "node",
-
     // Allows default imports from CommonJS modules. 
     // Example: `import something from "some-cjs-package"`.
     "esModuleInterop": true,
-
     // Recommended to skip type checks of .d.ts files from dependencies. 
     // Speeds up build times.
     "skipLibCheck": true,
-
     // Helps maintain consistent file name casing across platforms.
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./", 
+    "paths": {
+      "@types/*": ["src/types/*"]
+    }
   },
   // Exclude test files, build folders, or any extra directories you don’t want to compile.
   "exclude": [
@@ -47,5 +42,9 @@
     "**/__tests__"
   ],
   // Limit compilation to src folder (adjust to your project structure).
-  "include": ["src"]
+  "include": [
+    "src"
+  ],
+  // "declaration": true,
+  // "declarationDir": "dist/types"
 }

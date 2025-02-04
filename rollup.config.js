@@ -7,7 +7,7 @@ export default {
   input: 'src/index.ts',
   external: [
     ...Object.keys(packageJson.peerDependencies || {}),
-    ...Object.keys(packageJson.dependencies || {})
+    "react/jsx-runtime"
   ],
   output: [
     {
@@ -24,6 +24,6 @@ export default {
   plugins: [
     resolve(),
     commonjs(),
-    typescript({ tsconfig: './tsconfig.json' })
+    typescript({ tsconfig: './tsconfig.json' }),
   ]
 };

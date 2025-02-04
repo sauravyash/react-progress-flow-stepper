@@ -1,59 +1,42 @@
-import React from 'react';
+import { JSX } from 'react';
+import { type Step, StepComponent } from './Step';
+import styled from '@emotion/styled'
 
-export interface Step {
-  label: string;
-  completed?: boolean;
-}
 
-interface ProgressFlowStepperProps {
+export interface ProgressFlowStepperProps {
   steps: Step[];
   currentStepIndex: number;
   onStepClick?: (index: number) => void;
 }
 
-export const ProgressFlowStepper: React.FC<ProgressFlowStepperProps> = ({
+const StepperContainer = styled("div")`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 4rem;
+  margin: 4rem 0;
+`;
+
+export function ProgressFlowStepper({
   steps,
   currentStepIndex,
-  onStepClick
-}) => {
-  return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      {steps.map((step, index) => {
-        const isActive = index === currentStepIndex;
-        const isCompleted = step.completed || index < currentStepIndex;
+  onStepClick,
+}: ProgressFlowStepperProps): JSX.Element {
 
-        return (
-          <div
+  return (
+    <StepperContainer>
+      {
+        steps.map((step, index) =>
+          <StepComponent
             key={index}
-            onClick={() => onStepClick?.(index)}
-            style={{
-              cursor: onStepClick ? 'pointer' : 'default',
-              marginRight: '16px',
-              display: 'flex',
-              alignItems: 'center'
-            }}
-          >
-            {/* Circle indicating step status */}
-            <div
-              style={{
-                width: '24px',
-                height: '24px',
-                borderRadius: '50%',
-                backgroundColor: isCompleted ? 'green' : isActive ? 'blue' : 'gray',
-                color: 'white',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginRight: '8px'
-              }}
-            >
-              {index + 1}
-            </div>
-            {/* Step Label */}
-            <span>{step.label}</span>
-          </div>
-        );
-      })}
-    </div>
+            step={step}
+            index={index}
+            currentStepIndex={currentStepIndex}
+            onStepClick={onStepClick}
+          />)
+      }
+    </StepperContainer>
   );
 };
