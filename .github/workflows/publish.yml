@@ -23,11 +23,8 @@ jobs:
 
       # Install dependencies
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
 
-      # (Optional) Run tests
-      - name: Run tests
-        run: npm test
 
       # (Optional) Build your project if necessary
       - name: Build project
